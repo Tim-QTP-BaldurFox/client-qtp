@@ -1,35 +1,127 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import socket from "./socket";
+import { setQuizSet, setRoomCode, setUsername, setPlayers } from "./reduxSlice";
+import Quiz from "./components/Quiz";
+import { Outlet, useNavigate } from "react-router-dom";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const dispatch = useDispatch();
+  const roomCode = useSelector((state) => state.redux.roomCode);
+  const username = useSelector((state) => state.redux.username);
+  const quizSet = useSelector((state) => state.redux.quizSet);
+  const players = useSelector((state) => state.redux.players);
+
+  const [usernameInput, setUsernameInput] = useState("");
+
+  const navigate = useNavigate();
+
+  function handleNewRoom() {
+    socket.emit("new-room", usernameInput, (response) => {
+      // console.log(response, '<-- response');
+      dispatch(setUsername(usernameInput));
+      dispatch(setRoomCode(response.roomCode));
+      dispatch(setQuizSet(response.quizSet));
+      dispatch(setPlayers(response.players));
+      navigate(`/room/${roomCode}/waiting`);
+    });
+  }
+
+  function handleJoinRoom(e) {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    const formJson = Object.fromEntries(formData.entries());
+    if (!formJson.roomCodeInput) return null;
+    const arg = {
+      username: usernameInput,
+      roomCode: formJson.roomCodeInput,
+    };
+    socket.emit("join-room", arg, (response) => {
+      if (response.code == 404) {
+        //
+      } else {
+        dispatch(setRoomCode(response.roomCode));
+        dispatch(setQuizSet(response.quizSet));
+        dispatch(setPlayers(response.players));
+        navigate(`/room/${roomCode}/waiting`);
+      }
+    });
+  }
+
+  function handleUsernameInput(e) {
+    e.preventDefault();
+    setUsernameInput(e.target.value);
+  }
+
+  function handleAnswer(answer) {
+    socket.emit("client-answer", answer, (response) => {
+      // TODO
+    });
+  }
+
+  useEffect(() => {
+    socket.on("connect", () => {});
+
+    // socket.on("new-player", (data) => {
+    //   dispatch(setPlayers(data.players))
+    // })
+
+    return () => {
+      //
+    };
+  }, []);
 
   return (
     <>
+      <h1>Homepage</h1>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          placeholder="username"
+          value={usernameInput}
+          onChange={handleUsernameInput}
+        />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <div style={{ display: "flex", flexDirection: "row", marginTop: "3rem" }}>
+        <div>
+          <button onClick={handleNewRoom}>New Room</button>
+        </div>
+
+        <div style={{ marginLeft: "3rem" }}>
+          <p> or </p>
+        </div>
+
+        <div style={{ marginLeft: "3rem" }}>
+          <form onSubmit={handleJoinRoom}>
+            <input
+              type="text"
+              name="roomCodeInput"
+              id="roomCodeInput"
+              placeholder="room code"
+            />
+            <button type="submit" style={{ marginLeft: "1rem" }}>
+              Join Room
+            </button>
+          </form>
+        </div>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+
+      <div>
+        <Outlet />
+        {/* <p>{ roomCode && `Room code: ${roomCode}` }</p>
+        <ul>
+          { quizSet && quizSet.results.map( (q, i) => {
+            console.log(i)
+            // return <li key={i}>{ q.question }</li>
+            return <Quiz key={i} d={q} />
+          }) }
+        </ul> */}
+      </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
