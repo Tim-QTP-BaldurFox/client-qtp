@@ -1,8 +1,9 @@
+import { useNavigate } from "react-router-dom"
 export default function Home() {
     const navigate = useNavigate()
     return (
         <>
-        <Navbar/>
+        {/* <Navbar/> */}
         <div className="container">
       <div className="register-page" >
         <h2 className='judul' style={{color: "white"}}>Quiz Trivia Programming</h2>
