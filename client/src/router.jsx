@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
-import WaitingRoom from "./pages/WaitingRoom";
+import WaitingRoom from "./page/WaitingRoom";
 import QuizPage from "./pages/QuizPage";
 import Root from "./pages/Root";
 import Quiz from "./pages/quiz";

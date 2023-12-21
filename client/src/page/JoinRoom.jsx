@@ -3,7 +3,7 @@ import Navbar from "./Navbar";
 export default function WaitingRoom() {
     return (
         <>
-        <Navbar/>
+        {/* <Navbar/> */}
         <div className='container'>
       <div class="waiting-room-page">
         <h2 style={{color: "white"}}>Waiting Room...</h2>

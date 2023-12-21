@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './Navbar.css'
 import 'boxicons'
 
@@ -7,9 +7,12 @@ export default function Navbar() {
     return(
         <>
         <header className='header'>
-        <i class='bx bxs-joystick bx-tada' style={{color : "white", fontSize: "45px"}}></i>
+        <i className='bx bxs-joystick bx-tada' style={{color : "white", fontSize: "45px"}}></i>
             <nav className='navbar'>
-                <a href='' onClick={() => navigate('/home')}>Home</a>
+                <Link to='/'>
+                    Home
+                </Link>
+                {/* <a href='' onClick={() => navigate('/home')}>Home</a> */}
             </nav>
         </header>
         </>

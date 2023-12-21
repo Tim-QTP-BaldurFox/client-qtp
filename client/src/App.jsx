@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import socket from "./socket";
+// import socket from "./socket";
 import { setQuizSet, setRoomCode, setUsername, setPlayers } from "./reduxSlice";
 import Quiz from "./components/Quiz";
 import { Outlet, useNavigate } from "react-router-dom";
@@ -61,7 +61,7 @@ function App() {
   }
 
   useEffect(() => {
-    socket.on("connect", () => {});
+    // socket.on("connect", () => {});
 
     // socket.on("new-player", (data) => {
     //   dispatch(setPlayers(data.players))

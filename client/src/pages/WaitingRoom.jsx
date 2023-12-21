@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import socket from "../socket";
+// import socket from "../socket";
 import { useNavigate } from "react-router-dom";
 import { setPlayers } from "../reduxSlice";
 import { Link } from "react-router-dom";
@@ -12,10 +12,10 @@ export default function WaitingRoom() {
   const players = useSelector((state) => state.redux.players);
 
   useEffect(() => {
-    socket.on("connect", () => {});
-    socket.on("new-player", (data) => {
-      dispatch(setPlayers(data.players));
-    });
+    // socket.on("connect", () => {});
+    // socket.on("new-player", (data) => {
+    //   dispatch(setPlayers(data.players));
+    // });
 
     return () => {
       //
