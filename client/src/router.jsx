@@ -23,6 +23,10 @@ const router = createBrowserRouter([
         path: "/room/:roomId/waiting",
         element: <WaitingRoom />,
       },
+      {
+        path: '/leaderboard',
+        element: <LeaderBoard/>
+      }
     ],
   }
 ]);
