@@ -5,8 +5,9 @@ import { setQuizSet, setRoomCode, setUsername, setPlayers } from "./reduxSlice";
 import Quiz from "./components/Quiz";
 import { Outlet, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import Navbar from "./components/Navbar";
 
-function App() {
+function MainLayout() {
   const dispatch = useDispatch();
   const roomCode = useSelector((state) => state.redux.roomCode);
   const username = useSelector((state) => state.redux.username);
@@ -78,6 +79,7 @@ function App() {
 
   return (
     <>
+      <Navbar />
       <h1>Homepage</h1>
       <div>
         <input
@@ -126,4 +128,4 @@ function App() {
   );
 }
 
-export default App;
+export default MainLayout;

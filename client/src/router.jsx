@@ -1,12 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
-import App from "./App";
+import MainLayout from "./MainLayout";
 import WaitingRoom from "./pages/WaitingRoom";
 import QuizPage from "./pages/QuizPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <MainLayout />,
     children: [
       {
         path: "/room/:roomId/waiting",
