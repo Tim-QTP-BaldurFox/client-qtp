@@ -4,6 +4,7 @@ import socket from "./socket";
 import { setQuizSet, setRoomCode, setUsername, setPlayers } from "./reduxSlice";
 import Quiz from "./components/Quiz";
 import { Outlet, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,7 +40,10 @@ function App() {
     };
     socket.emit("join-room", arg, (response) => {
       if (response.code == 404) {
-        //
+        Swal.fire({
+          title: "Room Gak Ada!",
+          icon: "error",
+        });
       } else {
         dispatch(setRoomCode(response.roomCode));
         dispatch(setQuizSet(response.quizSet));
@@ -109,9 +113,8 @@ function App() {
         </div>
       </div>
 
-      <div>
-        <Outlet />
-        {/* <p>{ roomCode && `Room code: ${roomCode}` }</p>
+      <Outlet />
+      {/* <p>{ roomCode && `Room code: ${roomCode}` }</p>
         <ul>
           { quizSet && quizSet.results.map( (q, i) => {
             console.log(i)
@@ -119,7 +122,6 @@ function App() {
             return <Quiz key={i} d={q} />
           }) }
         </ul> */}
-      </div>
     </>
   );
 }

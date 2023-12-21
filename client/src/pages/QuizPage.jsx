@@ -23,24 +23,29 @@ export default function QuizPage() {
     console.log("Selected value:", selectedOption);
   };
 
-  const handleOptionChange = (e) => {
-    console.log(e.target.value);
-    setSelectedOption(e.target.value);
-  };
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>ini QuizPage</h1>
-      <h1>
-        Pertanyaan:
-        {/* {dataQuiz.results[0]} */}
-      </h1>
-
-      <select value={selectedOption} onChange={handleOptionChange}>
-        <option value="True">True</option>
-        <option value="False">False</option>
-      </select>
-
-      <button type="submit">Submit</button>
-    </form>
+    <>
+      <div className="container">
+        <div className="quiz-page">
+          <h2 className="judul">Quiz Trivia Programming</h2>
+          <form onSubmit={() => handleSubmit()}>
+            <div id="quiz" className="mt-4">
+              <p>
+                JavaScript adalah bahasa pemrograman yang digunakan untuk
+                membuat halaman web interaktif.
+              </p>
+              <div className="d-flex justify-content-center mt-5 gap-3">
+                <button type="submit" className="btn btn-outline-info  btn-lg">
+                  True
+                </button>
+                <button type="submit" className="btn btn-outline-info  btn-lg">
+                  False
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </>
   );
 }
