@@ -1,0 +1,111 @@
+body {
+  font-family: 'Times New Roman', Times, serif;
+  justify-content: center;
+  align-items: center;
+  background-position: center;
+  font-style: italic;
+  background-color: #1f293a;
+  background-image: url('./assets/background.jpg') no-repeat;
+}
+
+.judul {
+  display: flex;
+  background: transparent;
+  outline: none;
+  font-size: 30px;
+  height: 45px;
+  width: 100%;
+  color: #fff;
+  justify-content: center;
+  /* position: relative; */
+}
+
+.container {
+  width: 100%;
+  margin: 100px auto;
+  position: relative;
+  background: transparent;
+  border: 2px solid #0ef;
+  border-radius: 10px;
+  align-items: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn {
+  color: #fff;
+}
+
+.register-page ::placeholder {
+  color: #fff;
+  pointer-events: none;
+}
+
+.register-page,
+.quiz-page,
+.champion-page,
+.join-room-page,
+.quiz-room-page,
+.leaderboard-room-page,
+.waiting-room-page {
+  text-align: center;
+  padding: 50px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.text {
+  background: transparent;
+  border: 2px solid #2c4766;
+  outline: none;
+  font-size: 100px;
+  height: 45px;
+  width: 20%;
+  color: #fff;
+  position: relative;
+}
+
+h1,
+h2 {
+  color: #333;
+}
+
+form {
+  text-align: center;
+  margin-top: 20px;
+}
+
+input {
+  padding: 10px;
+  margin: 10px 0;
+  /* width: 80%; */
+  box-sizing: border-box;
+}
+
+button {
+  padding: 10px 20px;
+  margin-top: 70px;
+  color: #fff;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 200px;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  color: #fff;
+}
+
+p {
+  background: transparent;
+  outline: none;
+  font-size: 35px;
+  height: 70px;
+  width: 100%;
+  color: #fff;
+  position: relative;
+}
