@@ -7,7 +7,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import Navbar from "./components/Navbar";
 
-function MainLayout() {
+function App() {
   const dispatch = useDispatch();
   const roomCode = useSelector((state) => state.redux.roomCode);
   const username = useSelector((state) => state.redux.username);
@@ -79,7 +79,6 @@ function MainLayout() {
 
   return (
     <>
-      <Navbar />
       <h1>Homepage</h1>
       <div>
         <input
@@ -115,7 +114,6 @@ function MainLayout() {
         </div>
       </div>
 
-      <Outlet />
       {/* <p>{ roomCode && `Room code: ${roomCode}` }</p>
         <ul>
           { quizSet && quizSet.results.map( (q, i) => {
@@ -128,4 +126,4 @@ function MainLayout() {
   );
 }
 
-export default MainLayout;
+export default App;

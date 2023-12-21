@@ -1,22 +1,28 @@
 import { createBrowserRouter } from "react-router-dom";
-import MainLayout from "./MainLayout";
+import Root from "./pages/Root";
 import WaitingRoom from "./pages/WaitingRoom";
 import QuizPage from "./pages/QuizPage";
+import App from "./App";
+import Home from "./pages/Home";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout />,
+    element: <Root />,
     children: [
+      {
+        path: "",
+        element: <Home />,
+      },
       {
         path: "/room/:roomId/waiting",
         element: <WaitingRoom />,
       },
+      {
+        path: "/room/:roomId",
+        element: <QuizPage />,
+      },
     ],
-  },
-  {
-    path: "/room/:roomId",
-    element: <QuizPage />,
   },
 ]);
 

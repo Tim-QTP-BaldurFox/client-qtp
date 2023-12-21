@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Quiz from "../components/Quiz";
 export default function QuizPage() {
   const [selectedOption, setSelectedOption] = useState("True");
 
@@ -25,6 +26,7 @@ export default function QuizPage() {
 
   return (
     <>
+      <Quiz />
       <div className="container">
         <div className="quiz-page">
           <h2 className="judul">Quiz Trivia Programming</h2>

@@ -8,7 +8,7 @@ export default function Navbar() {
     <>
       <header className="header">
         <i
-          class="bx bxs-joystick bx-tada"
+          className="bx bxs-joystick bx-tada"
           style={{ color: "white", fontSize: "45px" }}
         ></i>
         <nav className="navbar">

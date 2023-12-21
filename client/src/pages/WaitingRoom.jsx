@@ -28,8 +28,7 @@ export default function WaitingRoom() {
         <div className="waiting-room-page">
           <h2 style={{ color: "white" }}>Waiting Room...</h2>
           <div style={{ color: "#0ef" }}>Room Code : {roomCode}</div> <br />
-          {/* <button className="btn btn-outline-secondary" disabled>-- Start Game --</button> */}
-          {players.length >= 2 ? (
+          {players?.length >= 2 ? (
             <Link to={`/room/${roomCode}`}>
               <button className="btn btn-outline-success">Start Game</button>
             </Link>
@@ -38,12 +37,10 @@ export default function WaitingRoom() {
             <p>Players:</p>
             <ul>
               {/* <li></li> here */}
-              {players.map((p, i) => {
+              {players?.map((p, i) => {
                 return <li key={i}>{p.username}</li>;
               })}
             </ul>
-
-            {/* {JSON.stringify(players)} */}
           </div>
         </div>
       </div>
